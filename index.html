@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Lori ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: linear-gradient(-45deg, #1a000c, #2a081a, #4a0e2e, #0f0006);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      font-family: 'Georgia', serif;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating Hearts Background */
+    .heart-bg {
+      position: absolute;
+      top: -10%;
+      color: rgba(255, 182, 193, 0.3);
+      font-size: 20px;
+      animation: float 8s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Envelope & Card Styling */
+    .container {
+      max-width: 650px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 192, 203, 0.2);
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      position: relative;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #ffb3c6;
+      font-weight: normal;
+      letter-spacing: 1px;
+    }
+
+    .letter-body {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #f3e5f5;
+      text-align: left;
+    }
+
+    .letter-body p {
+      margin-bottom: 20px;
+    }
+
+    /* Music Play Overlay (Enforces audio autoplay policy) */
+    .music-gate {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0f0006;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      transition: opacity 1s ease;
+    }
+
+    .music-gate button {
+      background: linear-gradient(135deg, #ff4d6d, #c9184a);
+      border: none;
+      color: #fff;
+      padding: 15px 35px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+      transition: transform 0.2s;
+    }
+
+    .music-gate button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Simple Audio Player Bar at bottom */
+    .audio-controls {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    audio {
+      width: 100%;
+      height: 35px;
+      filter: invert(0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen overlay to trigger sound playback -->
+  <div class="music-gate" id="gate">
+    <button onclick="openLetter()">Open Letter 💌</button>
+  </div>
+
+  <div class="container">
+    <h1>For Bunny 🥀</h1>
+    
+    <div class="letter-body">
+      <p>Hi Bunny 💔,</p>
+      <p>I’m sitting here completely in pieces, looking back at how far we came and wondering how I let us slip away. But deep down, I know I only have myself to blame.</p>
+      <p>A love like yours is something I didn't even realize still existed in this world. Breaking your heart is the biggest regret of my life, and I am so, so sorry for failing you. My pride and my failure to give you the time and attention you deserved completely let you down. I know you walked away because you were hurt, not because you wanted to, and it breaks my heart that I drove you to that point 🥺.</p>
+      <p>Losing you made me realize that you are, without a doubt, the most special and important person who has ever entered my life. I’ve tried to move on, but the truth is, I can’t function without you 🥀.</p>
+      <p>I know I’m far from perfect, and I will make mistakes, but you were the person who made me want to be better every single day. When I look at my phone now and see all those missed calls and quiet days, I regret every single second I didn't dedicate to you. Right now, you’re the only person I want to talk to, but I'm left with an empty silence 📱💔.</p>
+      <p>I’m taking this last shot because I love you too much to just walk away without telling you the absolute truth. I don't expect you to fix me, but if there is still even a tiny spark of love left in your heart for me, I am ready to do whatever it takes to earn your trust and your time back 🌹.</p>
+      <p>I still love you with everything I have, Lori. I am so sorry for everything. ❤️</p>
+    </div>
+
+    <div class="audio-controls">
+      <!-- Make sure your downloaded song is named "song.mp3" in the same folder -->
+      <audio id="bgMusic" loop controls>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+
+  <script>
+    // Create animated floating hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-bg');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+      heart.style.fontSize = Math.random() * 15 + 10 + 'px';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+    setInterval(createHeart, 400);
+
+    // Audio Playback Handler
+    function openLetter() {
+      const audio = document.getElementById('bgMusic');
+      const gate = document.getElementById('gate');
+      
+      audio.play().catch(e => console.log("Audio play deferred:", e));
+      
+      gate.style.opacity = '0';
+      setTimeout(() => {
+        gate.style.display = 'none';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
